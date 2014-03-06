@@ -3,36 +3,50 @@ require 'stripe'
 require 'haml'
 require 'logger'
 require 'money'
+require 'sinatra/asset_pipeline'
+require 'dotenv'
+require 'mandrill'
 
-set :publishable_key, ENV['PUBLISHABLE_KEY']
-set :secret_key, ENV['SECRET_KEY']
+require_relative 'lib/notifier'
 
-enable :logging, :dump_errors, :raise_errors
+class App < Sinatra::Base
+  register Sinatra::AssetPipeline
+  Dotenv.load
 
-logger = Logger.new('log/app.log')
+  set :publishable_key, ENV['PUBLISHABLE_KEY']
+  set :secret_key, ENV['SECRET_KEY']
 
-Stripe.api_key = settings.secret_key
+  enable :logging, :dump_errors, :raise_errors
 
-get '/' do
-  haml :index
+  logger = Logger.new('log/app.log')
+
+  Stripe.api_key = settings.secret_key
+
+
+  get '/' do
+    haml :index
+  end
+
+  post '/charge' do
+    # Amount in cents
+    @amount = params[:amount]
+    @currency = Money.new(@amount).format
+
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :amount      => @amount,
+      :description => 'Slow Coffee',
+      :currency    => 'usd',
+      :customer    => customer.id
+    )
+
+    Notifier.new.deliver(email: params[:stripeEmail], name: params[:stripeShippingName])
+    haml :charge
+  end
 end
 
-post "/charge" do
-  # Amount in cents
-  @amount = params[:amount]
-  @currency = Money.new(@amount).format
-
-  customer = Stripe::Customer.create(
-    :email => params[:stripeEmail],
-    :card  => params[:stripeToken]
-  )
-
-  charge = Stripe::Charge.create(
-    :amount      => @amount,
-    :description => 'Slow Coffee',
-    :currency    => 'usd',
-    :customer    => customer.id
-  )
-
-  haml :charge
-end
+App.run!
