@@ -22,7 +22,6 @@ class App < Sinatra::Base
 
   Stripe.api_key = settings.secret_key
 
-
   get '/' do
     haml :index
   end
