@@ -8,16 +8,20 @@ require 'dotenv'
 require 'mandrill'
 
 require_relative 'lib/notifier'
+require_relative 'application_helper'
 
 class App < Sinatra::Base
   register Sinatra::AssetPipeline
   Dotenv.load
 
+  helpers do
+    include ApplicationHelper
+  end
+
   set :publishable_key, ENV['PUBLISHABLE_KEY']
   set :secret_key, ENV['SECRET_KEY']
 
   enable :logging, :dump_errors, :raise_errors
-
   logger = Logger.new('log/app.log')
 
   Stripe.api_key = settings.secret_key
@@ -27,25 +31,17 @@ class App < Sinatra::Base
   end
 
   post '/charge' do
-    # Amount in cents
-    @amount = params[:amount]
-    @currency = Money.new(@amount).format
+    @currency = format_currency
 
-    customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :card  => params[:stripeToken]
-    )
+    customer = Stripe::Customer.create(create_customer(params))
+    charge_params = create_charge(params)
+    charge_params[:customer] = customer.id
+    charge = Stripe::Charge.create(charge_params)
 
-    charge = Stripe::Charge.create(
-      :amount      => @amount,
-      :description => 'Slow Coffee',
-      :currency    => 'usd',
-      :customer    => customer.id
-    )
+    deliver_confirmation_email(params)
 
-    Notifier.new.deliver(email: params[:stripeEmail], name: params[:stripeShippingName])
     haml :charge
   end
+
 end
 
-App.run!

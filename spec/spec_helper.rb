@@ -1,5 +1,5 @@
-# spec/spec_helper.rb
 require File.expand_path '../../app.rb', __FILE__
+require File.expand_path '../../application_helper.rb', __FILE__
 
 ENV['RACK_ENV'] = "test"
 
