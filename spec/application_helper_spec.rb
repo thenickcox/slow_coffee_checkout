@@ -40,7 +40,8 @@ describe 'ApplicationHelper' do
     it {
       Notifier.any_instance.should_receive(:deliver).with(
         name: 'Nick',
-        email: 'me@me.com'
+        email: 'me@me.com',
+        amount: "$14.00"
       )
       helper.deliver_confirmation_email(params)
     }

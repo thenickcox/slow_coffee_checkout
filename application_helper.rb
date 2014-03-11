@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def deliver_confirmation_email(params)
-    Notifier.new.deliver(email: get_email(params), name: get_first_name(params))
+    Notifier.new.deliver(email: get_email(params), name: get_first_name(params), amount: @currency)
   end
 
   def get_first_name(params)

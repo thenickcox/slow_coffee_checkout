@@ -1,15 +1,17 @@
 
-%form{ action: "/charge?amount=1400", method: 'post', class: 'payment' }
+%form{ action: "/charge?amount=1400", method: 'post', class: 'payment', id: 'fourteen' }
   %article
     %label.amount
       %span Amount: $14.00
 
-  %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '2 8oz. bags (2/month)', :'data-shipping-address' => true }
+  .stripejs#button-one
+    %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '2 8oz. bags (2/month)', :'data-shipping-address' => true }
 
 
-%form{ action: "/charge?amount=2000", method: 'post', class: 'payment' }
+%form{ action: "/charge?amount=2000", method: 'post', class: 'payment', id: 'twenty' }
   %article
     %label.amount
       %span Amount: $20.00
 
-  %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '4 8oz. bags (1/wk)', :'data-shipping-address' => true }
+  .stripejs#button-two
+    %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '4 8oz. bags (1/wk)', :'data-shipping-address' => true }
