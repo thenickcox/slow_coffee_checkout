@@ -7,18 +7,44 @@ body {
   color: #323232;
   font-family: "Sentinel SSm A", "Sentinel SSm B";
   font-weight: 400;
-  font-style: normal; }
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.45em;
+  padding: 0;
+  margin: 0; }
 
-.container {
+.container, .hero-inner {
   *zoom: 1;
-  max-width: 68em;
+  max-width: 56em;
   margin-left: auto;
   margin-right: auto; }
-  .container:before, .container:after {
+  .container:before, .container:after, .hero-inner:before, .hero-inner:after {
     content: " ";
     display: table; }
-  .container:after {
+  .container:after, .hero-inner:after {
     clear: both; }
+
+.hero {
+  background: url("../images/slow-coffee-header.jpg") center center no-repeat;
+  padding: 8em 0; }
+
+.hero-inner h1 {
+  margin: 0 auto;
+  font-size: 3.66em;
+  font-weight: 300;
+  line-height: 1;
+  color: #faf1d2; }
+.hero-inner span {
+  font-size: 70%;
+  position: relative;
+  bottom: 27px;
+  right: 5px; }
+.hero-inner p {
+  text-align: right;
+  position: relative;
+  font-size: 11px;
+  position: relative;
+  top: 8em; }
 
 .subscription {
   float: left;
@@ -29,18 +55,35 @@ body {
     margin-right: 0; }
   .subscription h1 {
     text-align: center; }
-  .subscription .plan {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    .subscription .plan:last-child {
-      margin-right: 0; }
-    @media screen and (max-width: 767px) {
-      .subscription .plan {
-        float: left;
-        display: block;
-        margin-right: 7.42297%;
-        width: 100%; }
-        .subscription .plan:last-child {
-          margin-right: 0; } }
+
+.plan {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .plan:last-child {
+    margin-right: 0; }
+  @media screen and (max-width: 767px) {
+    .plan {
+      float: left;
+      display: block;
+      margin-right: 7.42297%;
+      width: 100%; }
+      .plan:last-child {
+        margin-right: 0; } }
+  .plan h3 {
+    text-align: center; }
+
+footer {
+  *zoom: 1;
+  max-width: 56em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 2em 0;
+  margin-top: 3em 0 1em 0; }
+  footer:before, footer:after {
+    content: " ";
+    display: table; }
+  footer:after {
+    clear: both; }

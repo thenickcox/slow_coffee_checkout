@@ -1,6 +1,7 @@
 @import 'bourbon/bourbon'
 @import 'neat/neat'
 
+$max-width: 56em
 $mobile: max-width 767px 4
 
 body
@@ -8,16 +9,51 @@ body
   font-family: 'Sentinel SSm A', 'Sentinel SSm B'
   font-weight: 400
   font-style: normal
+  font-size: 18px
+  line-height: 1.45em
+  padding: 0
+  margin: 0
 
-.container
+.container, .hero-inner
   @include outer-container
+
+.hero
+  background: url('../images/slow-coffee-header.jpg') center center no-repeat
+  padding: 8em 0
+
+.hero-inner
+  h1
+    margin: 0 auto
+    font-size: 3.66em
+    font-weight: 300
+    line-height: 1
+    color: rgb(250, 241, 210)
+  span
+    font-size: 70%
+    position: relative
+    bottom: 27px
+    right: 5px
+  p
+    text-align: right
+    position: relative
+    font-size: 11px
+    position: relative
+    top: 8em
 
 .subscription
   @include span-columns(12)
   h1
     text-align: center
 
-  .plan
-    @include span-columns(6)
-    @include breakpoint($mobile)
-      @include span-columns(4)
+.plan
+  @include span-columns(6)
+  @include breakpoint($mobile)
+    @include span-columns(4)
+  h3
+    text-align: center
+
+footer
+  @include outer-container
+  text-align: center
+  padding: 2em 0
+  margin-top: 3em 0 1em 0

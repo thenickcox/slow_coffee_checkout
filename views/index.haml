@@ -1,10 +1,16 @@
-.container
-  .hero
-    .hero-inner
-      %h1
-        Gorgeous single origin coffees
-        hand-delivered<span>*</span> to you weekly.
+.hero
+  .hero-inner
+    %h1
+      Gorgeous single origin coffees
+      %br
+      hand-delivered<span>*</span>to you weekly.
+    %p
+      %small
+        %em
+          *Hand-delivery only available in Seattle area. Elsewhere, we can make arrangements.
+          %a{ href: '' } Contact us.
 
+.container
   .explanation
     %h3 Slow Coffee curates and roasts coffees from around the world. Then we hand-roast them in micro-batches and hand-deliver them right to your doorstep.
     %p We’re currently piloting our subscription program and have room for 15 coffee lovers. After that, we’ll start a waiting list.
@@ -22,7 +28,7 @@
             %span Amount: $14.00
 
         .stripejs#button-one
-          %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '2 8oz. bags (2/month)', :'data-shipping-address' => true }
+          -#%script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '2 8oz. bags (2/month)', :'data-shipping-address' => true }
 
     %section.plan
       %h3 4 8oz. bags
@@ -34,4 +40,9 @@
             %span Amount: $20.00
 
         .stripejs#button-two
-          %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '4 8oz. bags (1/wk)', :'data-shipping-address' => true }
+          -#%script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '4 8oz. bags (1/wk)', :'data-shipping-address' => true }
+
+%footer
+  %p
+    &copy; 2014 Slow Coffee.
+    %a{ href: '#' } Contact
