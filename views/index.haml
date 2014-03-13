@@ -1,17 +1,37 @@
+.container
+  .hero
+    .hero-inner
+      %h1
+        Gorgeous single origin coffees
+        hand-delivered<span>*</span> to you weekly.
 
-%form{ action: "/charge?amount=1400", method: 'post', class: 'payment', id: 'fourteen' }
-  %article
-    %label.amount
-      %span Amount: $14.00
+  .explanation
+    %h3 Slow Coffee curates and roasts coffees from around the world. Then we hand-roast them in micro-batches and hand-deliver them right to your doorstep.
+    %p We’re currently piloting our subscription program and have room for 15 coffee lovers. After that, we’ll start a waiting list.
 
-  .stripejs#button-one
-    %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '2 8oz. bags (2/month)', :'data-shipping-address' => true }
+  %section.subscription
+    %h1 Choose your subscription.
 
+    %section.plan
+      %h3 2 8oz bags.
+      %p <strong>Every other week</strong> we’ll deliver a bag of exquisite coffee. It’ll arrive in your hands the same day it’s roasted for peak freshness.
+      %p <em>Perfect for one casual coffee drinker</em>
+      %form{ action: "/charge?amount=1400", method: 'post', class: 'payment', id: 'fourteen' }
+        %article
+          %label.amount
+            %span Amount: $14.00
 
-%form{ action: "/charge?amount=2000", method: 'post', class: 'payment', id: 'twenty' }
-  %article
-    %label.amount
-      %span Amount: $20.00
+        .stripejs#button-one
+          %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '2 8oz. bags (2/month)', :'data-shipping-address' => true }
 
-  .stripejs#button-two
-    %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '4 8oz. bags (1/wk)', :'data-shipping-address' => true }
+    %section.plan
+      %h3 4 8oz. bags
+      %p <strong>Each week</strong>, you’ll get a different single origin coffee that we’ve selected from among dozens to highlight a particular flavor profile.
+      %p <em>Perfect for one everyday coffee drinker or two casual drinkers</em>
+      %form{ action: "/charge?amount=2000", method: 'post', class: 'payment', id: 'twenty' }
+        %article
+          %label.amount
+            %span Amount: $20.00
+
+        .stripejs#button-two
+          %script{ src: 'https://checkout.stripe.com/checkout.js', class:'stripe-button', :'data-key' => settings.publishable_key, :'data-name' => 'Slow Coffee', :'data-description' => '4 8oz. bags (1/wk)', :'data-shipping-address' => true }

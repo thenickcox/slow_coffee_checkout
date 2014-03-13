@@ -8,6 +8,8 @@ gem 'money'
 gem 'sinatra-asset-pipeline'
 gem 'dotenv'
 gem 'mandrill-api'
+gem 'bourbon'
+gem 'neat'
 
 group :development, :test do
   gem 'rspec'

@@ -1,0 +1,23 @@
+@import 'bourbon/bourbon'
+@import 'neat/neat'
+
+$mobile: max-width 767px 4
+
+body
+  color: #323232
+  font-family: 'Sentinel SSm A', 'Sentinel SSm B'
+  font-weight: 400
+  font-style: normal
+
+.container
+  @include outer-container
+
+.subscription
+  @include span-columns(12)
+  h1
+    text-align: center
+
+  .plan
+    @include span-columns(6)
+    @include breakpoint($mobile)
+      @include span-columns(4)

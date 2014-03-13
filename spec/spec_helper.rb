@@ -14,7 +14,6 @@ set :raise_errors, true
 set :logging, false
 
 Capybara.app = App
-Capybara.app_host = 'http://localhost:9292'
 
 module RSpecMixin
   def app
